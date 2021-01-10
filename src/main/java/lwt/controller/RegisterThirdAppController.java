@@ -1,5 +1,6 @@
 package lwt.controller;
 
+import lwt.builder.ApiResultBuilder;
 import lwt.info.query.ThirdAppRegisterQuery;
 import lwt.serviceImpl.RegistThirdAppServiceImpl;
 import lwt.utls.ApiResult;
@@ -29,6 +30,8 @@ public class RegisterThirdAppController {
     public ApiResult registThirdApp(@Valid @RequestBody ThirdAppRegisterQuery query) {
         String tag = "获取AppId和AppSecert";
         log.info("【{}】 请求参数", tag, query);
-        return registThirdAppService.getAppIdSecert(query);
+        ApiResult appIdSecert = registThirdAppService.getAppIdSecert(query);
+        log.info("【{}】请求结果: result = {}", tag, appIdSecert);
+        return ApiResultBuilder.success("11111", "请求成功", appIdSecert).build();
     }
 }

@@ -87,4 +87,8 @@ public class ApiResult {
         this.errorCode = errorCode;
         this.data = data;
     }
+
+    public ApiResult() {
+
+    }
 }
