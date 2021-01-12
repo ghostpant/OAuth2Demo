@@ -11,4 +11,6 @@ public class ThirdAppData {
 
     private String appSecert;
 
+    private String redirectUrl;
+
 }

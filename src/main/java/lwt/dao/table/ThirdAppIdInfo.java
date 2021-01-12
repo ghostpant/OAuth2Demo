@@ -33,6 +33,9 @@ public class ThirdAppIdInfo {
     @TableField(value = "createDate", jdbcType = JdbcType.TIMESTAMP)
     private Date createDate;
 
+    @TableField("redirectUrl")
+    private String redirectUrl;
+
     @TableField("isdelete")
     private Integer isdelete;
 

@@ -9,6 +9,7 @@ import lwt.info.query.ThirdAppRegisterQuery;
 import lwt.service.RegistThirdAppService;
 import lwt.utls.ApiResult;
 import lwt.utls.RandomIdSecertUtil;
+import lwt.utls.RegexCheckParamsUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -28,11 +29,18 @@ public class RegistThirdAppServiceImpl implements RegistThirdAppService {
 
 
     @Override
-    public ApiResult getAppIdSecert(ThirdAppRegisterQuery query) {
+    public synchronized ApiResult getAppIdSecert(ThirdAppRegisterQuery query) {
         String tag = "注册为第三方";
         String appName = query.getAppName();
         String appNumber = query.getAppNumber();
+        String redirectUrl = query.getRedirectUrl();
         //TODO 是否校验 appName和Number的合法性
+        //  ...
+        //校验redirectUrl的合法性
+        if (!RegexCheckParamsUtil.isURL(redirectUrl)) {
+            return ApiResultBuilder.fail("111", "非法的回调地址", redirectUrl).build();
+        }
+
         ThirdAppIdInfo appIdSecertByNumber = thirdAppIdInfoService.getAppIdSecertByNumber(appNumber);
         if (appIdSecertByNumber != null) {
             log.info("【{}】已经成第三方应用，无需注册, AppNumber = {}", tag, appNumber);
@@ -42,11 +50,11 @@ public class RegistThirdAppServiceImpl implements RegistThirdAppService {
         String appId = RandomIdSecertUtil.createAppId();
         String appSecert = RandomIdSecertUtil.createAppSecertById(appId);
         ThirdAppIdInfo thirdAppIdInfo = ThirdAppIdInfo.builder()
-                .appId(appId).appSecert(appSecert)
+                .appId(appId).appSecert(appSecert).redirectUrl(redirectUrl)
                 .appName(appName).appNumber(appNumber).build();
         thirdAppIdInfoService.save(thirdAppIdInfo);
 
-        ThirdAppData rsData = ThirdAppData.builder().appId(appId).appSecert(appSecert).build();
+        ThirdAppData rsData = ThirdAppData.builder().appId(appId).appSecert(appSecert).redirectUrl(redirectUrl).build();
 
         return ApiResultBuilder.success("111", "生成成功", rsData).build();
     }

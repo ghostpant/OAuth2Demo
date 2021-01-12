@@ -20,6 +20,15 @@ public class RandomIdSecertUtil {
 
 
     /**
+     * 生成TraceId
+     *
+     * @return trace
+     */
+    public static String getTrace() {
+        return getRandomString();
+    }
+
+    /**
      * 生成随机AppId
      *
      * @return appId

@@ -12,4 +12,7 @@ public class ThirdAppRegisterQuery {
 
     @NotEmpty(message = "appNumber不能为空")
     private String appNumber;
+
+    @NotEmpty(message = "url不能为空")
+    private String redirectUrl;
 }
