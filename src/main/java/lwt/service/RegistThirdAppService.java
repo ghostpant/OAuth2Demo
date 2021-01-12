@@ -6,4 +6,5 @@ import lwt.utls.ApiResult;
 public interface RegistThirdAppService {
 
     ApiResult getAppIdSecert(ThirdAppRegisterQuery query);
+
 }

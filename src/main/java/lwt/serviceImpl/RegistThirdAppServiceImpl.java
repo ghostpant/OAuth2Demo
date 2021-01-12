@@ -35,6 +35,8 @@ public class RegistThirdAppServiceImpl implements RegistThirdAppService {
         String appNumber = query.getAppNumber();
         String redirectUrl = query.getRedirectUrl();
         //TODO 是否校验 appName和Number的合法性
+        // TODO 校验scope范围是否合法
+        // Map scope
         //  ...
         //校验redirectUrl的合法性
         if (!RegexCheckParamsUtil.isURL(redirectUrl)) {

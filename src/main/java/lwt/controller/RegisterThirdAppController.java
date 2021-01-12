@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 @RestController
@@ -33,5 +34,14 @@ public class RegisterThirdAppController {
         ApiResult appIdSecert = registThirdAppService.getAppIdSecert(query);
         log.info("【{}】请求结果: result = {}", tag, appIdSecert);
         return appIdSecert;
+    }
+
+    @RequestMapping(value = "get/auth/page/")
+    public void redirectUrl2Auth(HttpServletRequest request){
+        String tag = "重定向到授权页面";
+        String appid = request.getParameter("appid");
+        String appNumber = request.getParameter("appNumber");
+        String redirect_url = request.getParameter("redirect_url");
+        String auth_type = request.getParameter("auth_type");
     }
 }
