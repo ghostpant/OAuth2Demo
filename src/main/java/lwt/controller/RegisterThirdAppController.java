@@ -32,6 +32,6 @@ public class RegisterThirdAppController {
         log.info("【{}】 请求参数", tag, query);
         ApiResult appIdSecert = registThirdAppService.getAppIdSecert(query);
         log.info("【{}】请求结果: result = {}", tag, appIdSecert);
-        return ApiResultBuilder.success("11111", "请求成功", appIdSecert).build();
+        return appIdSecert;
     }
 }
