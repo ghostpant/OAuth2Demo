@@ -7,4 +7,6 @@ public interface ThirdAppIdInfoService extends IService<ThirdAppIdInfo> {
 
     ThirdAppIdInfo getAppIdSecertByNumber(String appNumber);
 
+    ThirdAppIdInfo getAppByNumberID(String appNumber, String appId);
+
 }

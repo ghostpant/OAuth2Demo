@@ -10,12 +10,21 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class ThirdAppIdInfoServiceImpl extends ServiceImpl<ThirdAppIdInfoMapper, ThirdAppIdInfo> implements ThirdAppIdInfoService {
+
     @Override
     public ThirdAppIdInfo getAppIdSecertByNumber(String appNumber) {
         return baseMapper.selectOne(new QueryWrapper<ThirdAppIdInfo>()
                 .eq(ThirdAppIdInfoConstants.APP_NUMBER, appNumber)
                 .eq(ThirdAppIdInfoConstants.IS_DELETE, 0));
 
+    }
+
+    @Override
+    public ThirdAppIdInfo getAppByNumberID(String appNumber, String appId) {
+        return baseMapper.selectOne(new QueryWrapper<ThirdAppIdInfo>()
+                .eq(ThirdAppIdInfoConstants.APP_NUMBER, appNumber)
+                .eq(ThirdAppIdInfoConstants.APP_ID, appId)
+                .eq(ThirdAppIdInfoConstants.IS_DELETE, 0));
     }
 
 }

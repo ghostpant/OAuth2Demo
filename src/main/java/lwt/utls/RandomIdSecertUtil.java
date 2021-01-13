@@ -6,7 +6,7 @@ import java.util.UUID;
 
 public class RandomIdSecertUtil {
 
-    //盐，用于混交md5
+    //盐，用于混交md5  生成appid
     private static final String slat = "&%5123***&&%%$$#@";
 
     /**
@@ -40,7 +40,7 @@ public class RandomIdSecertUtil {
     /**
      * 获取AppSecert
      *
-     * @param appId
+     * @param appId appid
      * @return appSecert
      */
     public static String createAppSecertById(String appId) {
@@ -48,4 +48,5 @@ public class RandomIdSecertUtil {
         String secert = DigestUtils.md5DigestAsHex(base.getBytes());
         return secert;
     }
+
 }
