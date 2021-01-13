@@ -10,7 +10,7 @@ import javax.validation.constraints.NotEmpty;
 public class RedirectUrlQuery {
     @NotEmpty(message = "appid不能为空")
     private String appid;
-    @NotEmpty()
+    @NotEmpty(message = "")
     private String appNumber;
     private String redirect_url;
     private String auth_type;
